@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enroll Now - Travi Fitness</title>
+</head>
+<body>
+
+    <header>
+        <h1 align="center">TRAVI FITNESS</h1>
+        <p align="center"><em>Start Your Fitness Journey Today</em></p>
+        <hr>
+        <nav>
+            <table align="center" width="50%" border="0">
+                <tr>
+                    <td align="center"><a href="index.html">Home</a></td>
+                    <td align="center"><a href="schedule.html">Class Schedule</a></td>
+                    <td align="center"><strong>Enroll Now</strong></td>
+                </tr>
+            </table>
+        </nav>
+        <hr>
+    </header>
+
+    <main>
+        <section>
+            <h2 align="center">Membership Enrollment Form</h2>
+            <p align="center">
+                Fill in the form below to register your membership and reserve your sessions.
+            </p>
+
+            <table align="center" border="0" cellpadding="8" width="60%">
+                <tr>
+                    <td>
+                        <form action="index.html" method="GET">
+                            <div>
+                                <h3 align="center">Personal Details</h3>
+                                <p>
+                                    <label for="fullname">Full Name:</label><br>
+                                    <input type="text" id="fullname" name="fullname" placeholder="e.g. John Doe" required width="100%">
+                                </p>
+                                <p>
+                                    <label for="email">Email Address:</label><br>
+                                    <input type="email" id="email" name="email" placeholder="e.g. john@example.com" required>
+                                </p>
+                                <p>
+                                    <label for="age">Age (Years):</label><br>
+                                    <input type="number" id="age" name="age" min="15" max="100" required>
+                                </p>
+                            </div>
+                            
+                            <br>
+
+                            <div>
+                                <h3 align="center">Membership & Fitness Preferences</h3>
+                                <p>
+                                    <label for="plan">Select Membership Plan:</label><br>
+                                    <select id="plan" name="plan" required>
+                                        <option value="">-- Choose Plan --</option>
+                                        <option value="basic">Basic Plan (3 Days / Week)</option>
+                                        <option value="premium">Premium Plan (Unlimited Gym Access)</option>
+                                        <option value="vip">VIP Plan (Unlimited Access + Personal Trainer)</option>
+                                    </select>
+                                </p>
+                                <p>
+                                    <label>Primary Fitness Goal:</label><br>
+                                    <input type="radio" id="goal-loss" name="goal" value="weight_loss" required>
+                                    <label for="goal-loss">Weight Loss</label><br>
+                                    <input type="radio" id="goal-gain" name="goal" value="muscle_gain">
+                                    <label for="goal-gain">Muscle Gain</label><br>
+                                    <input type="radio" id="goal-endurance" name="goal" value="endurance">
+                                    <label for="goal-endurance">Endurance & Stamina</label>
+                                </p>
+                                <p>
+                                    <label>Preferred Training Times (Select all that apply):</label><br>
+                                    <input type="checkbox" id="time-morning" name="times" value="morning">
+                                    <label for="time-morning">Morning (5:00 AM - 11:00 AM)</label><br>
+                                    <input type="checkbox" id="time-afternoon" name="times" value="afternoon">
+                                    <label for="time-afternoon">Afternoon (12:00 PM - 4:00 PM)</label><br>
+                                    <input type="checkbox" id="time-evening" name="times" value="evening">
+                                    <label for="time-evening">Evening (5:00 PM - 9:00 PM)</label>
+                                </p>
+                            </div>
+
+                            <br>
+
+                            <div>
+                                <h3 align="center">Additional Information</h3>
+                                <p>
+                                    <label for="health_notes">Health Declarations / Fitness Comments:</label><br>
+                                    <textarea id="health_notes" name="health_notes" rows="4" cols="50" placeholder="Please list any medical conditions, injuries or specific goals we should be aware of..."></textarea>
+                                </p>
+                            </div>
+
+                            <br>
+
+                            <div align="center">
+                                <input type="submit" value="Submit Enrollment">
+                                &nbsp;&nbsp;&nbsp;
+                                <input type="reset" value="Reset Form">
+                            </div>
+                        </form>
+                    </td>
+                </tr>
+            </table>
+        </section>
+    </main>
+
+    <hr>
+
+    <footer>
+        <p align="center"><small>&copy; 2026 Travi Fitness. All rights reserved.</small></p>
+    </footer>
+
+</body>
+</html>
