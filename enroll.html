@@ -4,113 +4,191 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Enroll Now - Travi Fitness</title>
+    <meta name="description" content="Enroll in Travi Fitness Nairobi membership plans. Select Basic, Premium, or VIP plans and customize your training schedule.">
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
 </head>
 <body>
 
+    <!-- Header Navigation -->
     <header>
-        <h1 align="center">TRAVI FITNESS</h1>
-        <p align="center"><em>Start Your Fitness Journey Today</em></p>
-        <hr size="4" width="90%" align="center">
-        <nav>
-            <table align="center" width="50%" border="0">
-                <tr>
-                    <td align="center"><a href="index.html" title="Go back to the homepage">Home</a></td>
-                    <td align="center"><a href="schedule.html" title="View class calendar and schedule">Class Schedule</a></td>
-                    <td align="center"><strong>Enroll Now</strong></td>
-                </tr>
-            </table>
-        </nav>
-        <hr size="2" width="80%" align="center">
+        <div class="header-container">
+            <div class="brand">
+                <div class="brand-icon">TF</div>
+                <div class="brand-text">
+                    <h1>TRAVI FITNESS</h1>
+                    <p>Start Your Fitness Journey Today</p>
+                </div>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="schedule.html">Class Schedule</a></li>
+                    <li><a href="enroll.html" class="active">Enroll Now</a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
 
-    <main>
-        <section>
-            <h2 align="center">Membership Enrollment Form</h2>
-            <p align="center">
-                Fill in the form below to register your membership and reserve your sessions.
-            </p>
-
-            <table align="center" border="0" cellpadding="8" width="60%">
-                <tr>
-                    <td>
-                        <form action="index.html" method="GET">
-                            <div>
-                                <h3 align="center">Personal Details</h3>
-                                <p>
-                                    <label for="fullname">Full Name:</label><br>
-                                    <input type="text" id="fullname" name="fullname" placeholder="e.g. John Doe" required title="Please enter your full name as it appears on your ID (letters and spaces only)" pattern="^[a-zA-Z\s]+$" minlength="3">
-                                </p>
-                                <p>
-                                    <label for="email">Email Address:</label><br>
-                                    <input type="email" id="email" name="email" placeholder="e.g. john@example.com" required title="Enter a valid email address (e.g. name@domain.com)">
-                                </p>
-                                <p>
-                                    <label for="age">Age (Years):</label><br>
-                                    <input type="number" id="age" name="age" min="15" max="100" required title="Members must be between 15 and 100 years old">
-                                </p>
-                            </div>
-                            
-                            <br>
-
-                            <div>
-                                <h3 align="center">Membership & Fitness Preferences</h3>
-                                <p>
-                                    <label for="plan">Select Membership Plan:</label><br>
-                                    <select id="plan" name="plan" required title="Select a plan that fits your gym visit frequency">
-                                        <option value="">-- Choose Plan --</option>
-                                        <option value="basic">Basic Plan (3 Days / Week)</option>
-                                        <option value="premium">Premium Plan (Unlimited Gym Access)</option>
-                                        <option value="vip">VIP Plan (Unlimited Access + Personal Trainer)</option>
-                                    </select>
-                                </p>
-                                <p>
-                                    <label>Primary Fitness Goal:</label><br>
-                                    <input type="radio" id="goal-loss" name="goal" value="weight_loss" required title="Choose weight management and conditioning">
-                                    <label for="goal-loss">Weight Loss</label><br>
-                                    <input type="radio" id="goal-gain" name="goal" value="muscle_gain" title="Choose strength training and muscle hypertrophy">
-                                    <label for="goal-gain">Muscle Gain</label><br>
-                                    <input type="radio" id="goal-endurance" name="goal" value="endurance" title="Choose aerobic power and general stamina">
-                                    <label for="goal-endurance">Endurance & Stamina</label>
-                                </p>
-                                <p>
-                                    <label>Preferred Training Times (Select all that apply):</label><br>
-                                    <input type="checkbox" id="time-morning" name="times" value="morning" title="Morning session access">
-                                    <label for="time-morning">Morning (5:00 AM - 11:00 AM)</label><br>
-                                    <input type="checkbox" id="time-afternoon" name="times" value="afternoon" title="Afternoon session access">
-                                    <label for="time-afternoon">Afternoon (12:00 PM - 4:00 PM)</label><br>
-                                    <input type="checkbox" id="time-evening" name="times" value="evening" title="Evening session access">
-                                    <label for="time-evening">Evening (5:00 PM - 9:00 PM)</label>
-                                </p>
-                            </div>
-
-                            <br>
-
-                            <div>
-                                <h3 align="center">Additional Information</h3>
-                                <p>
-                                    <label for="health_notes">Health Declarations / Fitness Comments:</label><br>
-                                    <textarea id="health_notes" name="health_notes" rows="4" cols="50" placeholder="Please list any medical conditions, injuries or specific goals we should be aware of..." title="Detail any health factors we must consider to keep you safe"></textarea>
-                                </p>
-                            </div>
-
-                            <br>
-
-                            <div align="center">
-                                <input type="submit" value="Submit Enrollment" title="Submit registration details">
-                                &nbsp;&nbsp;&nbsp;
-                                <input type="reset" value="Reset Form" title="Clear all inputs in the form">
-                            </div>
-                        </form>
-                    </td>
-                </tr>
-            </table>
+    <main class="container">
+        <section style="margin-bottom: 2rem; text-align: center;">
+            <h2>Membership Enrollment Form</h2>
+            <p>Fill in the form below to register your membership and reserve your gym training sessions.</p>
         </section>
+
+        <!-- Success Confirmation Alert (Shown after valid submission) -->
+        <div class="alert-success" id="successAlert">
+            <h3 style="color: var(--text-success); margin-bottom: 0.5rem;">Enrollment Submitted Successfully!</h3>
+            <p>Thank you for signing up with Travi Fitness. Your registration details are recorded below:</p>
+            <div id="successDetails" style="background-color: white; padding: 1rem; border-radius: var(--radius-sm); border: 1px solid var(--border-success); margin-top: 0.75rem;"></div>
+        </div>
+
+        <div class="grid-form">
+            <!-- Main Form Card -->
+            <div class="card">
+                <form id="enrollmentForm" novalidate>
+                    <!-- Personal Details Section -->
+                    <div style="margin-bottom: 2rem;">
+                        <h3 style="border-bottom: 2px solid var(--border-light); padding-bottom: 0.5rem; margin-bottom: 1.25rem; color: var(--bg-navy);">
+                            1. Personal Details
+                        </h3>
+                        
+                        <div class="form-group">
+                            <label for="fullname" class="form-label">Full Name <span style="color: var(--text-error);">*</span></label>
+                            <input type="text" id="fullname" name="fullname" class="form-control" placeholder="e.g. John Doe" required>
+                            <div class="error-feedback" id="fullnameError"></div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email" class="form-label">Email Address <span style="color: var(--text-error);">*</span></label>
+                            <input type="email" id="email" name="email" class="form-control" placeholder="e.g. john@example.com" required>
+                            <div class="error-feedback" id="emailError"></div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="age" class="form-label">Age (Years) <span style="color: var(--text-error);">*</span></label>
+                            <input type="number" id="age" name="age" class="form-control" placeholder="e.g. 25" min="15" max="100" required>
+                            <div class="error-feedback" id="ageError"></div>
+                        </div>
+                    </div>
+
+                    <!-- Membership & Preferences Section -->
+                    <div style="margin-bottom: 2rem;">
+                        <h3 style="border-bottom: 2px solid var(--border-light); padding-bottom: 0.5rem; margin-bottom: 1.25rem; color: var(--bg-navy);">
+                            2. Membership & Preferences
+                        </h3>
+
+                        <div class="form-group">
+                            <label for="plan" class="form-label">Select Membership Plan <span style="color: var(--text-error);">*</span></label>
+                            <select id="plan" name="plan" class="form-control" required>
+                                <option value="">-- Choose Plan --</option>
+                                <option value="basic">Basic Plan (3 Days / Week) - KES 3,500/mo</option>
+                                <option value="premium">Premium Plan (Unlimited Gym Access) - KES 6,000/mo</option>
+                                <option value="vip">VIP Plan (Unlimited Access + Personal Trainer) - KES 10,000/mo</option>
+                            </select>
+                            <div class="error-feedback" id="planError"></div>
+                        </div>
+
+                        <div class="form-group" id="goalGroup">
+                            <label class="form-label">Primary Fitness Goal <span style="color: var(--text-error);">*</span></label>
+                            <div class="radio-group">
+                                <label class="radio-label">
+                                    <input type="radio" id="goal-loss" name="goal" value="weight_loss">
+                                    <span>Weight Loss & Body Fat Reduction</span>
+                                </label>
+                                <label class="radio-label">
+                                    <input type="radio" id="goal-gain" name="goal" value="muscle_gain">
+                                    <span>Muscle Building & Hypertrophy</span>
+                                </label>
+                                <label class="radio-label">
+                                    <input type="radio" id="goal-endurance" name="goal" value="endurance">
+                                    <span>Endurance & Athletic Conditioning</span>
+                                </label>
+                            </div>
+                            <div class="error-feedback" id="goalError"></div>
+                        </div>
+
+                        <div class="form-group" id="timesGroup">
+                            <label class="form-label">Preferred Training Times (Select all that apply) <span style="color: var(--text-error);">*</span></label>
+                            <div class="checkbox-group">
+                                <label class="checkbox-label">
+                                    <input type="checkbox" id="time-morning" name="times" value="morning">
+                                    <span>Morning Session (05:00 AM - 11:00 AM)</span>
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox" id="time-afternoon" name="times" value="afternoon">
+                                    <span>Afternoon Session (12:00 PM - 04:00 PM)</span>
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox" id="time-evening" name="times" value="evening">
+                                    <span>Evening Session (05:00 PM - 09:00 PM)</span>
+                                </label>
+                            </div>
+                            <div class="error-feedback" id="timesError"></div>
+                        </div>
+                    </div>
+
+                    <!-- Health Declarations -->
+                    <div style="margin-bottom: 2rem;">
+                        <h3 style="border-bottom: 2px solid var(--border-light); padding-bottom: 0.5rem; margin-bottom: 1.25rem; color: var(--bg-navy);">
+                            3. Additional Information
+                        </h3>
+                        <div class="form-group">
+                            <label for="health_notes" class="form-label">Health Declarations / Special Requests:</label>
+                            <textarea id="health_notes" name="health_notes" class="form-control" rows="4" placeholder="List any medical conditions, prior injuries, or specific trainer preferences..."></textarea>
+                        </div>
+                    </div>
+
+                    <!-- Submit & Reset Buttons -->
+                    <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                        <button type="submit" class="btn btn-primary" style="flex: 1;">Submit Enrollment</button>
+                        <button type="reset" class="btn btn-secondary" onclick="setTimeout(initMembershipCalculator, 50)">Reset Form</button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Dynamic Membership Plan Price Preview Card (Dynamic Feature) -->
+            <div class="sticky-summary" id="summaryCard">
+                <div class="summary-header">
+                    <h3 id="summaryPlanName" style="margin-bottom: 0.5rem; color: var(--bg-navy);">Select a Plan</h3>
+                    <div>
+                        <span class="price-tag" id="summaryPrice">KES 0</span>
+                        <span class="price-period" id="summaryPeriod">/ month</span>
+                    </div>
+                </div>
+                <h4 style="font-size: 1rem; margin-bottom: 0.75rem;">Included Features & Perks:</h4>
+                <ul class="perks-list" id="summaryPerks">
+                    <li>Choose a plan from the dropdown to calculate your pricing and view included benefits.</li>
+                </ul>
+            </div>
+        </div>
     </main>
 
-    <hr size="4" width="90%" align="center">
-
+    <!-- Footer -->
     <footer>
-        <p align="center"><small>&copy; 2026 Travi Fitness. All rights reserved.</small></p>
+        <div class="footer-container">
+            <div class="footer-col">
+                <h4>TRAVI FITNESS</h4>
+                <p>Your ultimate partner in health, muscle development, and cardiovascular endurance in Nairobi.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <p><a href="index.html">Home</a></p>
+                <p><a href="schedule.html">Class Schedule</a></p>
+                <p><a href="enroll.html">Enroll Now</a></p>
+            </div>
+            <div class="footer-col">
+                <h4>Contact Headquarters</h4>
+                <address>
+                    Ngong Road, Nairobi, Kenya<br>
+                    Email: <a href="mailto:info@travifitness.co.ke">info@travifitness.co.ke</a><br>
+                    Phone: <a href="tel:+254712345678">+254 712 345 678</a>
+                </address>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Travi Fitness. All rights reserved.</p>
+        </div>
     </footer>
 
 </body>

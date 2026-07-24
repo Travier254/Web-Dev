@@ -4,106 +4,202 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Class Schedule - Travi Fitness</title>
+    <meta name="description" content="Weekly workout class schedule at Travi Fitness Nairobi. Filter classes by focus (Yoga, HIIT, Strength, Core, Kickboxing) and view trainer bios.">
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
 </head>
 <body>
 
+    <!-- Header Navigation -->
     <header>
-        <h1 align="center">TRAVI FITNESS</h1>
-        <p align="center"><em>Weekly Workout Sessions & Expert Trainers</em></p>
-        <hr size="4" width="90%" align="center">
-        <nav>
-            <table align="center" width="50%" border="0">
-                <tr>
-                    <td align="center"><a href="index.html" title="Go back to the homepage">Home</a></td>
-                    <td align="center"><strong>Class Schedule</strong></td>
-                    <td align="center"><a href="enroll.html" title="Sign up for a membership today">Enroll Now</a></td>
-                </tr>
-            </table>
-        </nav>
-        <hr size="2" width="80%" align="center">
+        <div class="header-container">
+            <div class="brand">
+                <div class="brand-icon">TF</div>
+                <div class="brand-text">
+                    <h1>TRAVI FITNESS</h1>
+                    <p>Weekly Workout Sessions & Expert Trainers</p>
+                </div>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="schedule.html" class="active">Class Schedule</a></li>
+                    <li><a href="enroll.html">Enroll Now</a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
 
-    <main>
-        <section>
-            <h2 align="center">Our Weekly Training Schedule</h2>
-            <p align="center">
-                Choose the best workout class that matches your goals. 
-                Our certified trainers will assist you in reaching new heights.
-            </p>
-
-            <table align="center" border="1" cellpadding="10" cellspacing="0" width="90%">
-                <thead>
-                    <tr bgcolor="#f2f2f2">
-                        <th width="20%">Class Name</th>
-                        <th width="25%">Target Focus</th>
-                        <th width="20%">Day</th>
-                        <th width="15%">Time</th>
-                        <th width="12%">Trainer</th>
-                        <th width="8%">Location</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><strong>Morning Yoga</strong></td>
-                        <td>Flexibility & Mindfulness</td>
-                        <td>Monday / Wednesday</td>
-                        <td>06:00 AM - 07:00 AM</td>
-                        <td>Amina Juma</td>
-                        <td>Studio A</td>
-                    </tr>
-                    <tr>
-                        <td><strong>HIIT Burnout</strong></td>
-                        <td>High Intensity Cardio</td>
-                        <td>Tuesday / Thursday</td>
-                        <td>07:30 AM - 08:30 AM</td>
-                        <td>David Kiprop</td>
-                        <td>Studio B</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Power Strength</strong></td>
-                        <td>Weightlifting & Muscle</td>
-                        <td>Monday / Friday</td>
-                        <td>05:30 PM - 07:00 PM</td>
-                        <td>John Mwangi</td>
-                        <td>Main Gym Floor</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Core Crusher</strong></td>
-                        <td>Abs & Core Strength</td>
-                        <td>Wednesday</td>
-                        <td>06:00 PM - 06:45 PM</td>
-                        <td>Grace Wanjiku</td>
-                        <td>Studio B</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Cardio Kickboxing</strong></td>
-                        <td>Agility & Fat Loss</td>
-                        <td>Saturday</td>
-                        <td>08:00 AM - 09:30 AM</td>
-                        <td>Chris Onyango</td>
-                        <td>Studio A</td>
-                    </tr>
-                </tbody>
-            </table>
+    <main class="container">
+        <section style="margin-bottom: 2rem; text-align: center;">
+            <h2>Weekly Training Schedule & Classes</h2>
+            <p>Select your favorite workouts and explore instructor profiles. Click on any trainer to view their bio!</p>
         </section>
 
-        <hr size="3" width="70%" align="center">
+        <!-- Dynamic Filter Buttons (Dynamic Content Feature) -->
+        <div class="filter-container">
+            <button type="button" class="filter-btn active" data-filter="all">All Classes</button>
+            <button type="button" class="filter-btn" data-filter="yoga">Yoga & Mindfulness</button>
+            <button type="button" class="filter-btn" data-filter="hiit">HIIT Cardio</button>
+            <button type="button" class="filter-btn" data-filter="strength">Power Strength</button>
+            <button type="button" class="filter-btn" data-filter="core">Core Crusher</button>
+            <button type="button" class="filter-btn" data-filter="kickboxing">Kickboxing</button>
+        </div>
 
-        <section>
-            <h2 align="center">Join Our Training Community</h2>
-            <p align="center">
-                <img src="images/class.png" alt="Group Training Session at Travi Fitness" width="600" height="400">
-            </p>
-            <p align="center">
-                <a href="enroll.html" title="Click here to enroll in our programs">Ready to join? Sign up for a class today!</a>
-            </p>
+        <!-- Schedule Cards Grid -->
+        <div class="grid-3" style="margin-bottom: 3rem;">
+            <!-- Class 1 -->
+            <div class="schedule-card" data-category="yoga">
+                <div>
+                    <span style="display: block; font-size: 0.85rem; font-weight: 600; color: var(--primary-orange); margin-bottom: 0.5rem;">Yoga Studio A</span>
+                    <h3 style="margin-bottom: 0.25rem;">Morning Yoga</h3>
+                    <div class="schedule-time">Mon / Wed | 06:00 AM - 07:00 AM</div>
+                    <p style="font-size: 0.9rem; color: var(--text-muted); margin-top: 0.5rem;">
+                        Target Focus: Flexibility, Deep Breathing & Mindfulness
+                    </p>
+                </div>
+                <div>
+                    <button type="button" class="schedule-trainer-btn btn-block" data-trainer="Amina Juma">
+                        Trainer: Amina Juma (View Bio)
+                    </button>
+                </div>
+            </div>
+
+            <!-- Class 2 -->
+            <div class="schedule-card" data-category="hiit">
+                <div>
+                    <span style="display: block; font-size: 0.85rem; font-weight: 600; color: var(--bg-navy); margin-bottom: 0.5rem;">Studio B</span>
+                    <h3 style="margin-bottom: 0.25rem;">HIIT Burnout</h3>
+                    <div class="schedule-time">Tue / Thu | 07:30 AM - 08:30 AM</div>
+                    <p style="font-size: 0.9rem; color: var(--text-muted); margin-top: 0.5rem;">
+                        Target Focus: High Intensity Interval Cardio & Calorie Burn
+                    </p>
+                </div>
+                <div>
+                    <button type="button" class="schedule-trainer-btn btn-block" data-trainer="David Kiprop">
+                        Trainer: David Kiprop (View Bio)
+                    </button>
+                </div>
+            </div>
+
+            <!-- Class 3 -->
+            <div class="schedule-card" data-category="strength">
+                <div>
+                    <span style="display: block; font-size: 0.85rem; font-weight: 600; color: var(--primary-orange); margin-bottom: 0.5rem;">Main Gym Floor</span>
+                    <h3 style="margin-bottom: 0.25rem;">Power Strength</h3>
+                    <div class="schedule-time">Mon / Fri | 05:30 PM - 07:00 PM</div>
+                    <p style="font-size: 0.9rem; color: var(--text-muted); margin-top: 0.5rem;">
+                        Target Focus: Compound Barbell Weightlifting & Hypertrophy
+                    </p>
+                </div>
+                <div>
+                    <button type="button" class="schedule-trainer-btn btn-block" data-trainer="John Mwangi">
+                        Trainer: John Mwangi (View Bio)
+                    </button>
+                </div>
+            </div>
+
+            <!-- Class 4 -->
+            <div class="schedule-card" data-category="core">
+                <div>
+                    <span style="display: block; font-size: 0.85rem; font-weight: 600; color: var(--bg-navy); margin-bottom: 0.5rem;">Studio B</span>
+                    <h3 style="margin-bottom: 0.25rem;">Core Crusher</h3>
+                    <div class="schedule-time">Wednesday | 06:00 PM - 06:45 PM</div>
+                    <p style="font-size: 0.9rem; color: var(--text-muted); margin-top: 0.5rem;">
+                        Target Focus: Abdominal Sculpting & Spinal Pillar Stability
+                    </p>
+                </div>
+                <div>
+                    <button type="button" class="schedule-trainer-btn btn-block" data-trainer="Grace Wanjiku">
+                        Trainer: Grace Wanjiku (View Bio)
+                    </button>
+                </div>
+            </div>
+
+            <!-- Class 5 -->
+            <div class="schedule-card" data-category="kickboxing">
+                <div>
+                    <span style="display: block; font-size: 0.85rem; font-weight: 600; color: var(--primary-orange); margin-bottom: 0.5rem;">Studio A</span>
+                    <h3 style="margin-bottom: 0.25rem;">Cardio Kickboxing</h3>
+                    <div class="schedule-time">Saturday | 08:00 AM - 09:30 AM</div>
+                    <p style="font-size: 0.9rem; color: var(--text-muted); margin-top: 0.5rem;">
+                        Target Focus: Striking Agility, Footwork & Fat Burn
+                    </p>
+                </div>
+                <div>
+                    <button type="button" class="schedule-trainer-btn btn-block" data-trainer="Chris Onyango">
+                        Trainer: Chris Onyango (View Bio)
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Community Callout Card -->
+        <section class="card" style="margin-bottom: 2rem;">
+            <div class="grid-2" style="align-items: center;">
+                <div style="text-align: center;">
+                    <img src="images/class.png" alt="Group Training Session at Travi Fitness" style="max-width: 100%; height: auto; border-radius: var(--radius-md); box-shadow: var(--shadow-md);">
+                </div>
+                <div>
+                    <h2>Train Harder, Together</h2>
+                    <p>
+                        Group workouts build camaraderie, accountability, and boost individual performance. 
+                        Reserve your spot in our upcoming sessions and take your training to the next level.
+                    </p>
+                    <div style="margin-top: 1.5rem;">
+                        <a href="enroll.html" class="btn btn-primary">Enroll & Reserve Session</a>
+                    </div>
+                </div>
+            </div>
         </section>
     </main>
 
-    <hr size="4" width="90%" align="center">
+    <!-- Trainer Detail Bio Modal (Solid Surface, Zero Glassmorphism) -->
+    <div class="modal-overlay" id="trainerModal">
+        <div class="modal-card">
+            <div class="modal-header">
+                <h3 id="trainerModalName">Trainer Details</h3>
+                <button type="button" class="modal-close" onclick="closeModal(document.getElementById('trainerModal'))">&times;</button>
+            </div>
+            <div style="margin-bottom: 1rem;">
+                <span style="font-weight: 600; color: var(--primary-orange);" id="trainerModalRole">Specialist</span>
+                <span style="font-size: 0.85rem; color: var(--text-muted); margin-left: 0.5rem;" id="trainerModalExp"></span>
+            </div>
+            <p id="trainerModalBio" style="margin-bottom: 1rem;"></p>
+            <div style="background-color: var(--bg-main); padding: 0.85rem; border-radius: var(--radius-sm); margin-bottom: 1rem; border: 1px solid var(--border-light);">
+                <strong>Certifications:</strong> <span id="trainerModalCerts"></span>
+            </div>
+            <div style="margin-top: 1.5rem; text-align: right;">
+                <button type="button" class="btn btn-secondary" onclick="closeModal(document.getElementById('trainerModal'))">Close Profile</button>
+            </div>
+        </div>
+    </div>
 
+    <!-- Footer -->
     <footer>
-        <p align="center"><small>&copy; 2026 Travi Fitness. All rights reserved.</small></p>
+        <div class="footer-container">
+            <div class="footer-col">
+                <h4>TRAVI FITNESS</h4>
+                <p>Your ultimate partner in health, muscle development, and cardiovascular endurance in Nairobi.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <p><a href="index.html">Home</a></p>
+                <p><a href="schedule.html">Class Schedule</a></p>
+                <p><a href="enroll.html">Enroll Now</a></p>
+            </div>
+            <div class="footer-col">
+                <h4>Contact Headquarters</h4>
+                <address>
+                    Ngong Road, Nairobi, Kenya<br>
+                    Email: <a href="mailto:info@travifitness.co.ke">info@travifitness.co.ke</a><br>
+                    Phone: <a href="tel:+254712345678">+254 712 345 678</a>
+                </address>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Travi Fitness. All rights reserved.</p>
+        </div>
     </footer>
 
 </body>
