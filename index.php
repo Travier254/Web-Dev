@@ -1,3 +1,6 @@
+<?php
+require_once 'auth_guard.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,7 +13,6 @@
 </head>
 <body>
 
-    <!-- Header Navigation -->
     <header>
         <div class="header-container">
             <div class="brand">
@@ -22,27 +24,27 @@
             </div>
             <nav>
                 <ul>
-                    <li><a href="index.html" class="active">Home</a></li>
-                    <li><a href="schedule.html">Class Schedule</a></li>
-                    <li><a href="enroll.html">Enroll Now</a></li>
+                    <li><a href="index.php" class="active">Home</a></li>
+                    <li><a href="schedule.php">Class Schedule</a></li>
+                    <li><a href="enroll.php">Enroll Now</a></li>
+                    <li><a href="profile.php">My Profile</a></li>
+                    <li><a href="logout.php">Log Out</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
     <main class="container">
-        <!-- Personalized Welcome Banner -->
         <section class="welcome-banner" id="welcomeSection">
             <div class="welcome-content">
-                <h2 id="welcomeGreeting">Welcome to Travi Fitness!</h2>
+                <h2>Welcome to Travi Fitness, <span style="color: var(--primary-orange);"><?php echo htmlspecialchars($_SESSION['first_name'] . ' ' . $_SESSION['last_name']); ?></span>!</h2>
                 <p>Achieve your fitness goals with our certified trainers and world-class equipment.</p>
             </div>
             <div>
-                <button type="button" class="btn-change-name" id="btnChangeName">Change Name</button>
+                <a href="profile.php" class="btn-change-name" style="text-decoration: none;">Manage Profile</a>
             </div>
         </section>
 
-        <!-- Hero Showcase Card -->
         <section class="card" style="margin-bottom: 2rem;">
             <div class="grid-2" style="align-items: center;">
                 <div>
@@ -53,8 +55,8 @@
                         our state-of-the-art facility on Ngong Road provides the environment you need to succeed.
                     </p>
                     <div style="display: flex; gap: 1rem; margin-top: 1.5rem; flex-wrap: wrap;">
-                        <a href="enroll.html" class="btn btn-primary">Start Your Journey Today</a>
-                        <a href="schedule.html" class="btn btn-secondary">View Workout Schedule</a>
+                        <a href="enroll.php" class="btn btn-primary">Start Your Journey Today</a>
+                        <a href="schedule.php" class="btn btn-secondary">View Workout Schedule</a>
                     </div>
                 </div>
                 <div style="text-align: center;">
@@ -63,7 +65,6 @@
             </div>
         </section>
 
-        <!-- Core Highlights Grid -->
         <section style="margin-bottom: 3rem;">
             <h2 style="text-align: center; margin-bottom: 1.5rem;">Why Train With Travi Fitness?</h2>
             <div class="grid-3">
@@ -94,9 +95,7 @@
             </div>
         </section>
 
-        <!-- Hours of Operation & FAQ Grid -->
         <div class="grid-2" style="margin-bottom: 2rem;">
-            <!-- Hours Card -->
             <div class="card">
                 <div class="card-title">
                     <h3>Hours of Operation</h3>
@@ -118,7 +117,6 @@
                 </div>
             </div>
 
-            <!-- Dynamic FAQ Accordion (Dynamic Content Feature) -->
             <div class="card">
                 <div class="card-title">
                     <h3>Frequently Asked Questions</h3>
@@ -156,28 +154,6 @@
         </div>
     </main>
 
-    <!-- First Visit Name Prompt Modal (Solid Surface, Zero Glassmorphism) -->
-    <div class="modal-overlay" id="welcomeModal">
-        <div class="modal-card">
-            <div class="modal-header">
-                <h3>Welcome to Travi Fitness</h3>
-                <button type="button" class="modal-close" onclick="closeModal(document.getElementById('welcomeModal'))">&times;</button>
-            </div>
-            <p>Please enter your name so we can personalize your training experience on our website.</p>
-            <form id="welcomeForm">
-                <div class="form-group">
-                    <label for="modalNameInput" class="form-label">Your Name / Preferred Title:</label>
-                    <input type="text" id="modalNameInput" class="form-control" placeholder="e.g. John Doe" required minlength="2">
-                    <div class="error-feedback" id="modalNameError"></div>
-                </div>
-                <div style="display: flex; justify-content: flex-end; gap: 0.75rem; margin-top: 1.5rem;">
-                    <button type="submit" class="btn btn-primary btn-block">Save Name & Continue</button>
-                </div>
-            </form>
-        </div>
-    </div>
-
-    <!-- Footer -->
     <footer>
         <div class="footer-container">
             <div class="footer-col">
@@ -186,9 +162,9 @@
             </div>
             <div class="footer-col">
                 <h4>Quick Links</h4>
-                <p><a href="index.html">Home</a></p>
-                <p><a href="schedule.html">Class Schedule</a></p>
-                <p><a href="enroll.html">Enroll Now</a></p>
+                <p><a href="index.php">Home</a></p>
+                <p><a href="schedule.php">Class Schedule</a></p>
+                <p><a href="enroll.php">Enroll Now</a></p>
             </div>
             <div class="footer-col">
                 <h4>Contact Headquarters</h4>

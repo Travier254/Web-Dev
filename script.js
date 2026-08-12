@@ -1,12 +1,3 @@
-/**
- * Travi Fitness - Interactive JavaScript Functionality
- * Fulfills Javascript Lab Assignment Requirements:
- * 1. Welcome Message & LocalStorage persistence
- * 2. Real-time & Submit Form Validation
- * 3. Dynamic Content (Price Calculator, Class Schedule Filters, Trainer Modal, FAQ Accordion)
- * 4. Error-free Modular Execution
- */
-
 document.addEventListener('DOMContentLoaded', () => {
   initWelcomeMessage();
   initFormValidation();
@@ -15,9 +6,6 @@ document.addEventListener('DOMContentLoaded', () => {
   initFAQAccordion();
 });
 
-/* ==========================================
- * 1. WELCOME MESSAGE MODULE (index.html)
- * ========================================== */
 function initWelcomeMessage() {
   const welcomeModal = document.getElementById('welcomeModal');
   const welcomeForm = document.getElementById('welcomeForm');
@@ -26,19 +14,16 @@ function initWelcomeMessage() {
   const btnChangeName = document.getElementById('btnChangeName');
   const nameErrorFeedback = document.getElementById('modalNameError');
 
-  if (!welcomeGreeting) return; // Not on homepage or element not present
+  if (!welcomeGreeting) return;
 
-  // Check saved name in localStorage
   const savedName = localStorage.getItem('travi_user_name');
 
   if (savedName) {
     updateGreetingBanner(savedName);
   } else if (welcomeModal) {
-    // Show prompt modal if no name saved
     openModal(welcomeModal);
   }
 
-  // Handle modal submit
   if (welcomeForm) {
     welcomeForm.addEventListener('submit', (e) => {
       e.preventDefault();
@@ -53,7 +38,6 @@ function initWelcomeMessage() {
         return;
       }
 
-      // Save to localStorage & update banner
       localStorage.setItem('travi_user_name', inputVal);
       updateGreetingBanner(inputVal);
       closeModal(welcomeModal);
@@ -65,7 +49,6 @@ function initWelcomeMessage() {
     });
   }
 
-  // Handle "Change Name" button
   if (btnChangeName && welcomeModal) {
     btnChangeName.addEventListener('click', () => {
       if (modalNameInput) {
@@ -84,15 +67,12 @@ function updateGreetingBanner(name) {
 }
 
 
-/* ==========================================
- * 2. FORM VALIDATION MODULE (enroll.html)
- * ========================================== */
 function initFormValidation() {
   const form = document.getElementById('enrollmentForm');
   const successAlert = document.getElementById('successAlert');
   const successDetails = document.getElementById('successDetails');
 
-  if (!form) return; // Not on enrollment page
+  if (!form) return;
 
   const fields = {
     fullname: document.getElementById('fullname'),
@@ -101,7 +81,6 @@ function initFormValidation() {
     plan: document.getElementById('plan')
   };
 
-  // Real-time input listeners to clear errors as user types
   Object.keys(fields).forEach(key => {
     const el = fields[key];
     if (el) {
@@ -110,23 +89,18 @@ function initFormValidation() {
     }
   });
 
-  // Radio and checkbox change listeners
   document.querySelectorAll('input[name="goal"]').forEach(radio => {
     radio.addEventListener('change', () => clearGroupError('goalGroup'));
   });
 
-  document.querySelectorAll('input[name="times"]').forEach(cb => {
+  document.querySelectorAll('input[name="times[]"]').forEach(cb => {
     cb.addEventListener('change', () => clearGroupError('timesGroup'));
   });
 
-  // Form submit handler
   form.addEventListener('submit', (e) => {
-    e.preventDefault();
-
     let isValid = true;
     let firstErrorEl = null;
 
-    // Validate individual text/select fields
     ['fullname', 'email', 'age', 'plan'].forEach(key => {
       const fieldValid = validateField(key, true);
       if (!fieldValid) {
@@ -135,7 +109,6 @@ function initFormValidation() {
       }
     });
 
-    // Validate Radio Group (Fitness Goal)
     const selectedGoal = document.querySelector('input[name="goal"]:checked');
     if (!selectedGoal) {
       isValid = false;
@@ -145,8 +118,7 @@ function initFormValidation() {
       clearGroupError('goalGroup');
     }
 
-    // Validate Checkbox Group (Training Times)
-    const selectedTimes = document.querySelectorAll('input[name="times"]:checked');
+    const selectedTimes = document.querySelectorAll('input[name="times[]"]:checked');
     if (selectedTimes.length === 0) {
       isValid = false;
       showGroupError('timesGroup', 'Please select at least one preferred training time.');
@@ -156,34 +128,11 @@ function initFormValidation() {
     }
 
     if (!isValid) {
+      e.preventDefault();
       if (firstErrorEl) {
         firstErrorEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
       }
-      return;
     }
-
-    // Submission Success Handling
-    const nameVal = fields.fullname.value.trim();
-    const emailVal = fields.email.value.trim();
-    const planVal = fields.plan.options[fields.plan.selectedIndex].text;
-    const goalVal = selectedGoal.nextElementSibling.textContent.trim();
-    const timesArr = Array.from(selectedTimes).map(cb => cb.nextElementSibling.textContent.trim());
-
-    if (successAlert && successDetails) {
-      successDetails.innerHTML = `
-        <strong>Member Name:</strong> ${escapeHTML(nameVal)}<br>
-        <strong>Email:</strong> ${escapeHTML(emailVal)}<br>
-        <strong>Selected Plan:</strong> ${escapeHTML(planVal)}<br>
-        <strong>Fitness Goal:</strong> ${escapeHTML(goalVal)}<br>
-        <strong>Preferred Times:</strong> ${escapeHTML(timesArr.join(', '))}
-      `;
-      successAlert.classList.add('show');
-      successAlert.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    }
-
-    // Reset Form
-    form.reset();
-    initMembershipCalculator(); // Reset summary card
   });
 }
 
@@ -260,9 +209,6 @@ function clearGroupError(groupId) {
 }
 
 
-/* ==========================================
- * 3. DYNAMIC MEMBERSHIP CALCULATOR (enroll.html)
- * ========================================== */
 function initMembershipCalculator() {
   const planSelect = document.getElementById('plan');
   const priceDisplay = document.getElementById('summaryPrice');
@@ -328,19 +274,14 @@ function initMembershipCalculator() {
 }
 
 
-/* ==========================================
- * 4. CLASS SCHEDULE FILTERS & TRAINER MODAL (schedule.html)
- * ========================================== */
 function initScheduleFiltersAndTrainerModal() {
   const filterBtns = document.querySelectorAll('.filter-btn');
   const scheduleCards = document.querySelectorAll('.schedule-card');
   const trainerModal = document.getElementById('trainerModal');
 
-  // Filter Buttons
   if (filterBtns.length > 0 && scheduleCards.length > 0) {
     filterBtns.forEach(btn => {
       btn.addEventListener('click', () => {
-        // Update active class on buttons
         filterBtns.forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
 
@@ -358,7 +299,6 @@ function initScheduleFiltersAndTrainerModal() {
     });
   }
 
-  // Trainer Profile Data
   const trainerProfiles = {
     'Amina Juma': {
       role: 'Head Yoga & Mindful Movement Specialist',
@@ -389,10 +329,45 @@ function initScheduleFiltersAndTrainerModal() {
       experience: '8+ Years Experience',
       bio: 'Chris blends martial arts striking drills with rhythmic endurance footwork for explosive stress release and agility.',
       certifications: 'Kenya Kickboxing Federation (KKBF) Licensed Instructor & KSA Fitness Practitioner'
+    },
+    'Fatuma Abdi': {
+      role: 'Swim Conditioning & Aqua Aerobics Specialist',
+      experience: '6+ Years Experience',
+      bio: 'Fatuma leads high-intensity, low-impact water workouts designed to enhance lung capacity and joint mobility.',
+      certifications: 'Kenya Swimming Association (KSA) Certified Aquatic Fitness Instructor'
+    },
+    'Brian Oduya': {
+      role: 'Sports Recovery & Mobility Practitioner',
+      experience: '10+ Years Experience',
+      bio: 'Brian specializes in myofascial release, joint decompression, and active recovery routines for fatigue management.',
+      certifications: 'Kenya Physiotherapy Association (KPA) Accredited Movement Specialist'
+    },
+    'Mercy Nyambura': {
+      role: 'Boxing Fundamentals & Combat Instructor',
+      experience: '7+ Years Experience',
+      bio: 'Mercy teaches precision boxing combinations, footwork defense, and conditioning drills for mental toughness.',
+      certifications: 'Boxing Federation of Kenya (BFK) Certified Coach & KSA Instructor'
+    },
+    'Samuel Rotich': {
+      role: 'Power Cycling & Cardio Endurance Coach',
+      experience: '8+ Years Experience',
+      bio: 'Samuel brings high-cadence spin intervals tailored to simulate elevation climbs and stamina building.',
+      certifications: 'Kenya Cycling Federation (KCF) Certified Endurance Trainer'
+    },
+    'Irene Achieng': {
+      role: 'Functional Athletic Conditioning Trainer',
+      experience: '6+ Years Experience',
+      bio: 'Irene focuses on kinetic chain movements, kettlebell flows, and plyometrics for overall athletic speed.',
+      certifications: 'Kenya National Fitness Association (KNFA) Certified Functional Specialist'
+    },
+    'Peter Kamau': {
+      role: 'Posture Correction & Mat Pilates Instructor',
+      experience: '9+ Years Experience',
+      bio: 'Peter helps members strengthen deep core stabilizer muscles and resolve postural imbalances caused by sedentary work.',
+      certifications: 'Kenya Pilates & Movement Arts Guild Certified Instructor'
     }
   };
 
-  // Trainer Detail Modal triggers
   const trainerBtns = document.querySelectorAll('.schedule-trainer-btn');
   if (trainerBtns.length > 0 && trainerModal) {
     trainerBtns.forEach(btn => {
@@ -415,9 +390,6 @@ function initScheduleFiltersAndTrainerModal() {
 }
 
 
-/* ==========================================
- * 5. FAQ ACCORDION MODULE (index.html)
- * ========================================== */
 function initFAQAccordion() {
   const faqQuestions = document.querySelectorAll('.faq-question');
   if (faqQuestions.length === 0) return;
@@ -427,14 +399,12 @@ function initFAQAccordion() {
       const item = q.parentElement;
       const isOpen = item.classList.contains('open');
 
-      // Close all other open items
       document.querySelectorAll('.faq-item.open').forEach(openItem => {
         if (openItem !== item) {
           openItem.classList.remove('open');
         }
       });
 
-      // Toggle current item
       if (isOpen) {
         item.classList.remove('open');
       } else {
@@ -445,13 +415,10 @@ function initFAQAccordion() {
 }
 
 
-/* ==========================================
- * UTILITY FUNCTIONS FOR MODALS & HELPERS
- * ========================================== */
 function openModal(modalEl) {
   if (!modalEl) return;
   modalEl.classList.add('active');
-  document.body.style.overflow = 'hidden'; // Prevent background scrolling
+  document.body.style.overflow = 'hidden';
 }
 
 function closeModal(modalEl) {
@@ -460,7 +427,6 @@ function closeModal(modalEl) {
   document.body.style.overflow = '';
 }
 
-// Bind modal close buttons globally
 document.addEventListener('click', (e) => {
   if (e.target.classList.contains('modal-close') || e.target.classList.contains('modal-overlay')) {
     const activeModal = document.querySelector('.modal-overlay.active');
@@ -470,7 +436,6 @@ document.addEventListener('click', (e) => {
   }
 });
 
-// Escape HTML utility to prevent XSS
 function escapeHTML(str) {
   if (!str) return '';
   return str.replace(/[&<>"']/g, (match) => {
